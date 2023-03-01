@@ -1,0 +1,885 @@
+
+import pygame
+import sys
+from random import *
+
+mainClock = pygame.time.Clock()
+from pygame.locals import *
+
+
+pygame.init()
+pygame.mixer.init()
+
+
+size = [1800,1000]
+screen = pygame.display.set_mode(size)
+
+title = 'my piano'
+pygame.display.set_caption(title)
+
+backgroundimage = pygame.image.load('C:/Users/kscin/Downloads/startpage.png')              #백그라운드 이미지 불러오기
+backgroundimage2 = pygame.transform.scale(backgroundimage, (1800, 1000))
+screen.blit(backgroundimage2, (0,0))
+
+def circleline():                                          #첫 번째 테마인 Circles and Lines 함수
+
+
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+
+    q_p = False
+    w_p = False
+    e_p = False
+    r_p = False
+    t_p = False
+    y_p = False
+    u_p = False
+    i_p = False
+    p2 = False
+    p3 = False
+    p5 = False
+    p6 = False
+    p7 = False
+
+    a = pygame.mixer.Sound('C:/Users/kscin/Downloads/도.mp3')                      #사운드 파일 불러오기
+    a_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/도#.mp3')
+    b = pygame.mixer.Sound('C:/Users/kscin/Downloads/레.mp3')
+    b_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/레#.mp3')
+    c = pygame.mixer.Sound('C:/Users/kscin/Downloads/미.mp3')
+    d = pygame.mixer.Sound('C:/Users/kscin/Downloads/파.mp3')
+    d_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/파#.mp3')
+    e = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔.mp3')
+    e_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔#.mp3')
+    f = pygame.mixer.Sound('C:/Users/kscin/Downloads/라.mp3')
+    f_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/라#.mp3')
+    g = pygame.mixer.Sound('C:/Users/kscin/Downloads/시.mp3')
+    A = pygame.mixer.Sound('C:/Users/kscin/Downloads/도_.mp3')
+
+    aa = list(range(0, 256))
+    bb = list(range(0, 256))
+    cc = list(range(0, 256))
+
+
+    ss = 0
+    while ss == 0:
+
+        for event in pygame.event.get():  # 동시에 여러개의 이벤트가 발생할 수 있어서 그것을 리스트의 형태로 하나씩 받음
+            if event.type == pygame.QUIT:
+                ss = 1
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    q_p = True
+                elif event.key == pygame.K_w:
+                    w_p = True
+                elif event.key == pygame.K_e:
+                    e_p = True
+                elif event.key == pygame.K_r:
+                    r_p = True
+                elif event.key == pygame.K_t:
+                    t_p = True
+                elif event.key == pygame.K_y:
+                    y_p = True
+                elif event.key == pygame.K_u:
+                    u_p = True
+                elif event.key == pygame.K_i:
+                    i_p = True
+
+                elif event.key == pygame.K_2:
+                    p2 = True
+                elif event.key == pygame.K_3:
+                    p3 = True
+                elif event.key == pygame.K_5:
+                    p5 = True
+                elif event.key == pygame.K_6:
+                    p6 = True
+                elif event.key == pygame.K_7:
+                    p7 = True
+
+                    o_p = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_q:
+                    q_p = False
+                elif event.key == pygame.K_w:
+                    w_p = False
+                elif event.key == pygame.K_e:
+                    e_p = False
+                elif event.key == pygame.K_r:
+                    r_p = False
+                elif event.key == pygame.K_t:
+                    t_p = False
+                elif event.key == pygame.K_y:
+                    y_p = False
+                elif event.key == pygame.K_u:
+                    u_p = False
+                elif event.key == pygame.K_i:
+                    i_p = False
+
+                elif event.key == pygame.K_2:
+                    p2 = False
+                elif event.key == pygame.K_3:
+                    p3 = False
+                elif event.key == pygame.K_5:
+                    p5 = False
+                elif event.key == pygame.K_6:
+                    p6 = False
+                elif event.key == pygame.K_7:
+                    p7 = False
+
+        if q_p == True:                     #여기서부터는 키보드의 각 자판별로 음을 할당하고, randodm을 이용해서 색깔, 크기, 위치를 랜덤으로 정함
+            a.play()                        #모양도 각 자판마다 다름
+            # trw.show()
+            ran_color = (randint(0, 255), randint(0, 30), randint(0, 30))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(1, 22)
+            ran_thick = randint(1, 20)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), ran_size, ran_thick)
+
+        else:
+            a.stop()
+        if p2 == True:
+            a_.play()
+            ran_color = (randint(120, 240), randint(30, 120), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 8, 4)
+
+        else:
+            a_.stop()
+        if w_p == True:
+            b.play()
+            ran_color = (randint(170, 255), randint(120, 190), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 3)
+            pygame.draw.polygon(screen, ran_color, ((0, ran_y), (ran_x, ran_y), (ran_x, ran_y)))
+        else:
+            b.stop()
+        if p3 == True:
+            b_.play()
+            ran_color = (randint(190, 255), randint(180, 220), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(1, 20)
+            pygame.draw.line(screen, ran_color, (ran_x, ran_y), (ran_x + ran_size, ran_y + ran_size), 4)
+
+
+        else:
+            b_.stop()
+        if e_p == True:
+            c.play()
+            # i = randint(0, 255)
+            ran_color = (randint(160, 240), randint(180, 255), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(1, 25)
+            ran_thick = randint(1, 5)
+            #     pygame.draw.arc(screen, ran_color, (ran_x, ran_y, ran_x + 1, ran_y + 1), 1, 2, 1)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), ran_size, ran_thick)
+
+
+
+        else:
+            c.stop()
+        if r_p == True:
+            d.play()
+            ran_color = (randint(120, 150), randint(200, 225), randint(50, 115))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 8, 4)
+        else:
+            d.stop()
+
+        if t_p == True:
+            e.play()
+            ran_color = (randint(50, 80), randint(80, 130), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 8, 4)
+
+        else:
+            e.stop()
+        if y_p == True:
+            f.play()
+            ran_color = (randint(110, 255), randint(50, 140), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(1, 20)
+            pygame.draw.line(screen, ran_color, (ran_x, ran_y), (ran_x - ran_size, ran_y + ran_size), 4)
+        else:
+            f.stop()
+        if u_p == True:
+            g.play()
+            ran_color = (randint(100, 140), randint(100, 140), randint(100, 140))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.arc(screen, ran_color, (ran_x, ran_y, ran_x + 1, ran_y + 1), 1, 5, 1)
+
+
+
+        else:
+            g.stop()
+        if i_p == True:
+            A.play()
+            ran_color = (randint(220, 255), randint(220, 255), randint(220, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            # pygame.draw.polygon(screen, ran_color, ((146, 0), (250, 100), (230, 265), (44, 250), (0, ran_x)))
+            pygame.draw.polygon(screen, ran_color,
+                                ((600, ran_y), (ran_x, ran_y), (800, ran_y), (ran_x, ran_y), (1000, ran_y)))
+        else:
+            A.stop()
+        if p5 == True:
+            d_.play()
+            ran_color = (randint(70, 100), randint(170, 220), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            # pygame.draw.polygon(screen, ran_color, ((400, ran_y), (ran_x, 100), (ran_x, ran_y), (1000, ran_y)))
+            # pygame.draw.polygon(screen, ran_color, ((0, ran_y), (ran_x, ran_y), (ran_x, ran_y)))                  #왼쪽끝부터 줄무늬!!!
+            # pygame.draw.polygon(screen, ran_color, ((0, 0), (ran_x, ran_y), (ran_x, ran_y)))                       #왼쪽 위에서부터 광선 줄무늬!!!
+            pygame.draw.line(screen, ran_color, (ran_x, ran_y), (ran_x, ran_y + 22), 3)
+            pygame.draw.polygon(screen, ran_color, ((0, 0), (ran_x, ran_y), (ran_x, ran_y)))                       #왼쪽 위에서부터 광선 줄무늬!!!
+
+        else:
+            d_.stop()
+        if p6 == True:
+            e_.play()
+            ran_color = (randint(80, 150), randint(50, 110), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(1, 30)
+            ran_thick = randint(1, 2)
+            while 20 <= ran_size <= 28:
+                pygame.draw.circle(screen, ran_color, (ran_x, ran_y), ran_size, ran_thick)
+                ran_size += 4
+
+        else:
+            e_.stop()
+        if p7 == True:
+            f_.play()
+            ran_color = (randint(200, 255), randint(10, 180), randint(130, 170))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 12, 4)
+        else:
+            f_.stop()
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+def polygonclub():                                            #두 번째 테마인 Polygon Club 함수. 위에 첫 번째 테마랑 레퍼토리는 같고, 생성하는 도형이 다름
+
+
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+
+    q_p = False
+    w_p = False
+    e_p = False
+    r_p = False
+    t_p = False
+    y_p = False
+    u_p = False
+    i_p = False
+    p2 = False
+    p3 = False
+    p5 = False
+    p6 = False
+    p7 = False
+
+    a = pygame.mixer.Sound('C:/Users/kscin/Downloads/도.mp3')
+    a_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/도#.mp3')
+    b = pygame.mixer.Sound('C:/Users/kscin/Downloads/레.mp3')
+    b_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/레#.mp3')
+    c = pygame.mixer.Sound('C:/Users/kscin/Downloads/미.mp3')
+    d = pygame.mixer.Sound('C:/Users/kscin/Downloads/파.mp3')
+    d_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/파#.mp3')
+    e = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔.mp3')
+    e_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔#.mp3')
+    f = pygame.mixer.Sound('C:/Users/kscin/Downloads/라.mp3')
+    f_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/라#.mp3')
+    g = pygame.mixer.Sound('C:/Users/kscin/Downloads/시.mp3')
+    A = pygame.mixer.Sound('C:/Users/kscin/Downloads/도_.mp3')
+
+    aa = list(range(0, 256))
+    bb = list(range(0, 256))
+    cc = list(range(0, 256))
+
+
+    ss = 0
+    while ss == 0:
+
+        for event in pygame.event.get():  # 동시에 여러개의 이벤트가 발생할 수 있어서 그것을 리스트의 형태로 하나씩 받음
+            if event.type == pygame.QUIT:
+                ss = 1
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    q_p = True
+                elif event.key == pygame.K_w:
+                    w_p = True
+                elif event.key == pygame.K_e:
+                    e_p = True
+                elif event.key == pygame.K_r:
+                    r_p = True
+                elif event.key == pygame.K_t:
+                    t_p = True
+                elif event.key == pygame.K_y:
+                    y_p = True
+                elif event.key == pygame.K_u:
+                    u_p = True
+                elif event.key == pygame.K_i:
+                    i_p = True
+
+                elif event.key == pygame.K_2:
+                    p2 = True
+                elif event.key == pygame.K_3:
+                    p3 = True
+                elif event.key == pygame.K_5:
+                    p5 = True
+                elif event.key == pygame.K_6:
+                    p6 = True
+                elif event.key == pygame.K_7:
+                    p7 = True
+
+                    o_p = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_q:
+                    q_p = False
+                elif event.key == pygame.K_w:
+                    w_p = False
+                elif event.key == pygame.K_e:
+                    e_p = False
+                elif event.key == pygame.K_r:
+                    r_p = False
+                elif event.key == pygame.K_t:
+                    t_p = False
+                elif event.key == pygame.K_y:
+                    y_p = False
+                elif event.key == pygame.K_u:
+                    u_p = False
+                elif event.key == pygame.K_i:
+                    i_p = False
+
+                elif event.key == pygame.K_2:
+                    p2 = False
+                elif event.key == pygame.K_3:
+                    p3 = False
+                elif event.key == pygame.K_5:
+                    p5 = False
+                elif event.key == pygame.K_6:
+                    p6 = False
+                elif event.key == pygame.K_7:
+                    p7 = False
+
+        if q_p == True:
+            a.play()
+            ran_color = (randint(0, 255), randint(0, 30), randint(0, 30))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((45, ran_y), (ran_x, 0), (800, ran_y), (ran_x, ran_y), (900, ran_y)))    #  polygon 을 생성함
+
+        else:
+            a.stop()
+        if p2 == True:
+            a_.play()
+            ran_color = (randint(120, 240), randint(30, 120), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((1000, ran_y), (ran_x, 900), (900, ran_y)))
+
+        else:
+            a_.stop()
+        if w_p == True:
+            b.play()
+            ran_color = (randint(170, 255), randint(120, 190), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((1700, ran_y), (ran_x, 0), (1200, ran_y)))
+        else:
+            b.stop()
+        if p3 == True:
+            b_.play()
+            ran_color = (randint(190, 255), randint(180, 220), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((800, 700), (ran_x, 400), (1200, ran_y)))
+
+
+        else:
+            b_.stop()
+        if e_p == True:
+            c.play()
+            # i = randint(0, 255)
+            ran_color = (randint(160, 240), randint(180, 255), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((500, ran_y), (480, 0), (550, ran_y)))
+
+
+
+        else:
+            c.stop()
+        if r_p == True:
+            d.play()
+            ran_color = (randint(120, 150), randint(200, 225), randint(50, 115))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((ran_x, ran_y), (100, 600), (300, ran_y)))
+        else:
+            d.stop()
+
+        if t_p == True:
+            e.play()
+            ran_color = (randint(50, 80), randint(80, 130), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.rect(screen, ran_color,((400, ran_y), (ran_x, 300)))
+
+        else:
+            e.stop()
+        if y_p == True:
+            f.play()
+            ran_color = (randint(110, 255), randint(50, 140), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((600, ran_y), (ran_x, 300), (800, ran_y), (70, ran_y), (1000, ran_y)))
+        else:
+            f.stop()
+        if u_p == True:
+            g.play()
+            ran_color = (randint(100, 140), randint(100, 140), randint(100, 140))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_xx = randint(1300, 1800)
+            pygame.draw.polygon(screen, ran_color,((ran_xx, ran_y), (ran_xx, 800), (1500, ran_y), (ran_xx, ran_y), (1800, 1000)))
+
+
+
+        else:
+            g.stop()
+        if i_p == True:
+            A.play()
+            ran_color = (randint(220, 255), randint(220, 255), randint(220, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color, ((146, 0), (250, 100), (230, 265), (44, 250), (0, ran_x)))
+
+        else:
+            A.stop()
+        if p5 == True:
+            d_.play()
+            ran_color = (randint(70, 100), randint(170, 220), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            #pygame.draw.polygon(screen, ran_color, ((0, ran_y), (ran_x, ran_y), (ran_x, ran_y)))                  #왼쪽끝부터 줄무늬!!!
+            #pygame.draw.polygon(screen, ran_color, ((0, 0), (ran_x, ran_y), (ran_x, ran_y)))                       #왼쪽 위에서부터 광선 줄무늬!!!
+            pygame.draw.polygon(screen, ran_color, ((0, 0), (ran_x, 300), (400, ran_y)))
+
+        else:
+            d_.stop()
+        if p6 == True:
+            e_.play()
+            ran_color = (randint(80, 150), randint(50, 110), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((200, ran_y), (300, ran_y + ran_y), (400 - ran_y, ran_y)))
+
+        else:
+            e_.stop()
+        if p7 == True:
+            f_.play()
+            ran_color = (randint(200, 255), randint(10, 180), randint(130, 170))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.polygon(screen, ran_color,((1600, ran_y + 50), (1400, ran_y + ran_y), (1800 - ran_y, ran_y)))
+        else:
+            f_.stop()
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+def flowergarden():                                            #세 번째 테마인 Flower Garden  함수. 위에 첫 번째 테마랑 레퍼토리는 같고, 생성하는 도형이 다름
+
+
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+
+    q_p = False
+    w_p = False
+    e_p = False
+    r_p = False
+    t_p = False
+    y_p = False
+    u_p = False
+    i_p = False
+    p2 = False
+    p3 = False
+    p5 = False
+    p6 = False
+    p7 = False
+
+    a = pygame.mixer.Sound('C:/Users/kscin/Downloads/도.mp3')
+    a_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/도#.mp3')
+    b = pygame.mixer.Sound('C:/Users/kscin/Downloads/레.mp3')
+    b_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/레#.mp3')
+    c = pygame.mixer.Sound('C:/Users/kscin/Downloads/미.mp3')
+    d = pygame.mixer.Sound('C:/Users/kscin/Downloads/파.mp3')
+    d_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/파#.mp3')
+    e = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔.mp3')
+    e_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/솔#.mp3')
+    f = pygame.mixer.Sound('C:/Users/kscin/Downloads/라.mp3')
+    f_ = pygame.mixer.Sound('C:/Users/kscin/Downloads/라#.mp3')
+    g = pygame.mixer.Sound('C:/Users/kscin/Downloads/시.mp3')
+    A = pygame.mixer.Sound('C:/Users/kscin/Downloads/도_.mp3')
+
+    aa = list(range(0, 256))
+    bb = list(range(0, 256))
+    cc = list(range(0, 256))
+
+
+    ss = 0
+    while ss == 0:
+
+        for event in pygame.event.get():  # 동시에 여러개의 이벤트가 발생할 수 있어서 그것을 리스트의 형태로 하나씩 받음
+            if event.type == pygame.QUIT:
+                ss = 1
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    q_p = True
+                elif event.key == pygame.K_w:
+                    w_p = True
+                elif event.key == pygame.K_e:
+                    e_p = True
+                elif event.key == pygame.K_r:
+                    r_p = True
+                elif event.key == pygame.K_t:
+                    t_p = True
+                elif event.key == pygame.K_y:
+                    y_p = True
+                elif event.key == pygame.K_u:
+                    u_p = True
+                elif event.key == pygame.K_i:
+                    i_p = True
+
+                elif event.key == pygame.K_2:
+                    p2 = True
+                elif event.key == pygame.K_3:
+                    p3 = True
+                elif event.key == pygame.K_5:
+                    p5 = True
+                elif event.key == pygame.K_6:
+                    p6 = True
+                elif event.key == pygame.K_7:
+                    p7 = True
+
+                    o_p = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_q:
+                    q_p = False
+                elif event.key == pygame.K_w:
+                    w_p = False
+                elif event.key == pygame.K_e:
+                    e_p = False
+                elif event.key == pygame.K_r:
+                    r_p = False
+                elif event.key == pygame.K_t:
+                    t_p = False
+                elif event.key == pygame.K_y:
+                    y_p = False
+                elif event.key == pygame.K_u:
+                    u_p = False
+                elif event.key == pygame.K_i:
+                    i_p = False
+
+                elif event.key == pygame.K_2:
+                    p2 = False
+                elif event.key == pygame.K_3:
+                    p3 = False
+                elif event.key == pygame.K_5:
+                    p5 = False
+                elif event.key == pygame.K_6:
+                    p6 = False
+                elif event.key == pygame.K_7:
+                    p7 = False
+
+        if q_p == True:
+            a.play()
+            ran_color = (randint(100, 255), randint(0, 30), randint(0, 30))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            ran_size = randint(20, 70)
+            ran_thick = randint(1, 20)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 4)
+            pygame.draw.circle(screen, ran_color, (ran_x+7, ran_y+4), 4)
+            pygame.draw.circle(screen, ran_color, (ran_x + 7, ran_y - 4), 4)
+
+        else:
+            a.stop()
+        if p2 == True:
+            a_.play()
+            ran_color = (randint(120, 240), randint(30, 120), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 3)
+
+        else:
+            a_.stop()
+        if w_p == True:
+            b.play()
+            ran_color = (randint(170, 255), randint(120, 190), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 3)
+        else:
+            b.stop()
+        if p3 == True:
+            b_.play()
+            ran_color = (randint(190, 255), randint(180, 220), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 3)
+
+
+        else:
+            b_.stop()
+        if e_p == True:
+            c.play()
+            # i = randint(0, 255)
+            ran_color = (randint(160, 240), randint(180, 255), randint(0, 20))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.arc(screen, ran_color, (ran_x, ran_y, ran_x + 1, ran_y + 1), 0, 1, 5)
+
+
+
+        else:
+            c.stop()
+        if r_p == True:
+            d.play()
+            ran_color = (randint(120, 150), randint(160, 225), randint(50, 115))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.arc(screen, ran_color, (ran_x, ran_y, ran_x + 1, ran_y + 1), 1, 2, 8)
+        else:
+            d.stop()
+
+        if t_p == True:
+            e.play()
+            ran_color = (randint(50, 80), randint(80, 130), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 3)
+
+        else:
+            e.stop()
+        if y_p == True:
+            f.play()
+            ran_color = (randint(110, 255), randint(50, 140), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 4)
+        else:
+            f.stop()
+        if u_p == True:
+            g.play()
+            ran_color = (randint(100, 140), randint(100, 140), randint(100, 140))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 4)
+
+
+
+        else:
+            g.stop()
+        if i_p == True:
+            A.play()
+            ran_color = (randint(220, 255), randint(220, 255), randint(220, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 4)
+            pygame.draw.circle(screen, ran_color, (ran_x + 4, ran_y + 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x + 4, ran_y - 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x - 4, ran_y + 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x - 4, ran_y - 4), 2)
+        else:
+            A.stop()
+        if p5 == True:
+            d_.play()
+            ran_color = (randint(70, 100), randint(170, 220), randint(190, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x + 4, ran_y + 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x + 4, ran_y - 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x - 4, ran_y + 4), 2)
+            pygame.draw.circle(screen, ran_color, (ran_x - 4, ran_y - 4), 2)
+
+        else:
+            d_.stop()
+        if p6 == True:
+            e_.play()
+            ran_color = (randint(80, 150), randint(50, 110), randint(210, 255))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 2)
+
+        else:
+            e_.stop()
+        if p7 == True:
+            f_.play()
+            ran_color = (randint(200, 255), randint(10, 180), randint(130, 170))
+            ran_x = randint(0, 1800)
+            ran_y = randint(0, 1000)
+            pygame.draw.circle(screen, ran_color, (ran_x, ran_y), 5)
+        else:
+            f_.stop()
+
+        pygame.display.flip()
+
+    pygame.quit()
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+font = pygame.font.SysFont('ebrima', 100)
+
+
+def draw_text(text, font, color, surface, x, y):
+    textobj = font.render(text, 1, color)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x,y)
+    surface.blit(textobj, textrect)
+
+click = False
+
+def main_menu():             #여기서부터는 첫 번째 시작페이지이자 메인 페이지 구성하기, 버튼 만들기, 위에서 만든 함수 버튼에 할당시키기
+    while True:
+
+        draw_text('main menu', font, (255, 255, 255), screen, 680, 220)
+        title1 = pygame.image.load('C:/Users/kscin/Downloads/title.png')          #시작 페이지에서 제목 이미지
+        screen.blit(title1, [200, 220])
+
+        title2 = pygame.image.load('C:/Users/kscin/Downloads/choose.png')        #시작 페이지에서 "테마를 고르세요" 이미지
+        screen.blit(title2, [360, 420])
+
+        mx, my = pygame.mouse.get_pos()
+
+        button11 = pygame.image.load('C:/Users/kscin/Downloads/circlesandlines.png')       #시작 페이지에서 첫 번재 테마 버튼 만들기
+        button111 = pygame.transform.scale(button11, (400, 120))
+        screen.blit(button111, [100, 650])
+        button1 = pygame.Rect(100, 650, 400, 120)
+
+        button22 = pygame.image.load('C:/Users/kscin/Downloads/polygonclub.png')        #시작 페이지에서 두 번째 테마 버튼 만들기
+        button222 = pygame.transform.scale(button22, (370, 120))
+        screen.blit(button222, [710, 650])
+        button2 = pygame.Rect(710, 650, 370, 120)
+
+        button33 = pygame.image.load('C:/Users/kscin/Downloads/flowergarden.png')  # 시작 페이지에서 세 번째 테마 버튼 만들기
+        button333 = pygame.transform.scale(button33, (380, 120))
+        screen.blit(button333, [1300, 650])
+        button3 = pygame.Rect(1300, 650, 380, 120)
+
+        mouse_presses = pygame.mouse.get_pressed()                         # 마우스 클릭 감지하기
+        click1 = mouse_presses[0]
+        if button1.collidepoint((mx, my)):
+            if click1:
+                first()
+        if button2.collidepoint((mx, my)):
+            if click1:
+                second()
+        if button3.collidepoint((mx, my)):
+            if click1:
+                third()
+
+
+        click = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        pygame.display.update()
+        mainClock.tick(60)
+
+
+def first():
+    running = True
+    while running:
+        screen.fill((0, 0, 0))
+
+        draw_text('Circles and Lines', font, (255, 255, 255), screen, 50, 20)
+        for event in pygame.event.get():
+            circleline()
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
+
+        pygame.display.update()
+        mainClock.tick(60)
+
+
+def second():
+    running = True
+    while running:
+        screen.fill((0,0,0))
+
+        draw_text('Polygon Club', font, (255, 255, 255), screen, 50, 20)
+        for event in pygame.event.get():
+            polygonclub()
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    main_menu()
+
+        pygame.display.update()
+        mainClock.tick(60)
+
+def third():
+    running = True
+    while running:
+        screen.fill((0,0,0))
+
+        draw_text('Flower Garden', font, (255, 255, 255), screen, 50, 20)
+        for event in pygame.event.get():
+            flowergarden()
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    main_menu()
+
+        pygame.display.update()
+        mainClock.tick(60)
+
+
+
+main_menu()
+
+
+
+
+
+
+
+
+
+
+
