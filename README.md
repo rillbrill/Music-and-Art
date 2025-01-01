@@ -1,6 +1,6 @@
 # Music-and-Art
-2021년 컴퓨터공학개론 수업의 미니 프로젝트 Music and Art 입니다.
-It was a team project for the course INTRODUCTION TO COMPUTER ENGINEERING.
+2021년 1학기 컴퓨터공학개론 수업의 미니 프로젝트 Music and Art 입니다.
+a python project for the course INTRODUCTION TO COMPUTER ENGINEERING 2021-1.
 
 ![0  start page](https://user-images.githubusercontent.com/117519072/222178858-f5f2af1d-91e1-4ac6-be03-204fdc8342dd.PNG)
 시작 페이지입니다. Circles and Lines, Polygon Club, Flower Garden 세 가지 테마 중 하나를 선택할 수 있습니다. 
